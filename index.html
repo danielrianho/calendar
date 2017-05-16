@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title class="title">övning</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+    <script language="JavaScript" type="text/javascript"  src='assets/js/jquery.min.js'></script>
+    <script language="JavaScript" type="text/javascript"  src='assets/js/moment.js'></script>
+    <script language="JavaScript" type="text/javascript" src='assets/js/fullcalendar.min.js'></script>
+    <script src='full_calendar.js'></script>
+    <script language="JavaScript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css"/>
+    
+    <link rel="stylesheet" href="assets/css/fullcalendar.css" rel="import">
+    <link rel="stylesheet" href="assets/css/style.css" rel="import">
+    <link href="assets/css/fullcalendar.css" rel='stylesheet' media='print'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+   
+  </head>
+
+<!-- <body class="site">
+	<h1>Övning<a href="">ar</a>!</h1>
+	<button id="knapp" type="button"> Change color</button>
+	<input type="text" id="input"></input> -->
+
+  <div id="calendar">hej</div>
+	<!-- Button trigger modal -->
+<div id="calendarModal" class="modal fade">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+            <h4 id="modalTitle" class="modal-title">Book</h4>
+        </div>
+        <div id="modalBody" class="modal-body"> 
+          <form class="form-inline">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Room</label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+                <option selected>Choose room</option>
+                <option value="1">Sound room</option>
+                <option value="2">Conference room</option>
+            </select> <br />
+            <label class="sr-only" for="inlineFormInput">Name</label>
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Jane Doe">
+            <label class="sr-only" for="inlineFormInputGroup">Username</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon">@</div>
+                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+            </div>
+            
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
