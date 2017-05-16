@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title class="title">övning</title>
+    <title class="title">Calendar</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 
@@ -10,6 +10,7 @@
     <script language="JavaScript" type="text/javascript"  src='assets/js/moment.js'></script>
     <script language="JavaScript" type="text/javascript" src='assets/js/fullcalendar.min.js'></script>
     <script src='full_calendar.js'></script>
+
     <script language="JavaScript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css"/>
@@ -28,38 +29,55 @@
 
   <div id="calendar">hej</div>
 	<!-- Button trigger modal -->
-<div id="calendarModal" class="modal fade">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
-            <h4 id="modalTitle" class="modal-title">Book</h4>
-        </div>
-        <div id="modalBody" class="modal-body"> 
-          <form class="form-inline">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Room</label>
-            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-                <option selected>Choose room</option>
-                <option value="1">Sound room</option>
-                <option value="2">Conference room</option>
-            </select> <br />
-            <label class="sr-only" for="inlineFormInput">Name</label>
-            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Jane Doe">
-            <label class="sr-only" for="inlineFormInputGroup">Username</label>
-            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                <div class="input-group-addon">@</div>
-                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+<div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="modalTitle">
+                    Modal title
+                </h4>
             </div>
             
+            <!-- Modal Body -->
+            <div class="modal-body" id="modalBody">
+                
+                <form role="form">
+                    <div class="form-group">
+                        <label for="exampleInputName">Name</label>
+                        <input type="name" class="form-control"
+                              id="exampleInputName" placeholder="Name"/>
+                    </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control"
+                      id="exampleInputEmail1" placeholder="Enter email"/>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="exampleInputText">Something you want to tell us</label>
+                      <textarea  class="form-control"
+                          id="exampleInputtext"></textarea>
+                  </div>
+                </form>
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger"
+                        data-dismiss="modal">
+                            Close
+                </button>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 </body>
