@@ -5,6 +5,7 @@ $(document).ready(function(){
 	var m = date.getMonth();
 	var y = date.getFullYear();
 	
+
 $('#calendar').fullCalendar({
 	header: {
 		left: 'prev,next today',
@@ -20,12 +21,20 @@ $('#calendar').fullCalendar({
 
  //        // change the border color just for fun
  //        $(this).css('border-color', 'red');
- 		console.log(event);
- 		   console.log(title[0]);
+ 		
+ 		
      },
 
 	  
     select: function(start, end, allDay, event) {
+
+    	
+            // var allDay = !start.hasTime && !end.hasTime;
+            // var newEvent = new Object();
+            // newEvent.title = abc;
+            // newEvent.start = moment(start).format();
+            // newEvent.allDay = false;
+            // $('#calendar').fullCalendar('renderEvent', newEvent);
 
    		//$('#modalTitle').html(event.title);
  	//     $('#modalBody').html(event.description);
@@ -74,12 +83,13 @@ $('#calendar').fullCalendar({
   	axisFormat: 'HH:mm a',
 	defaultDate: date,
 	editable: true,
+	eventOverlap: false,
+	selectOverlap: false,
 
-	events: [
-			{
-				title: 'All Day Event',
-				start: new Date(y, m, 1)
-			},
+
+
+		events: [
+
 			{
 				id: 999,
 				title: 'Repeating Event',
@@ -116,9 +126,5 @@ $('#calendar').fullCalendar({
 				url: 'http://google.com/'
 			}
 		]
-
-})
-
-
-	
+	})		
 });
