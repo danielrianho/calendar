@@ -6,40 +6,34 @@ $(document).ready(function(){
 	var y = date.getFullYear();
 	
 
-$('#calendar').fullCalendar({
-	header: {
-		left: 'prev,next today',
-		center: 'title',
-		right: 'month,agendaWeek,agendaDay'
-	},
+	$('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay'
+		},
 
-	select: function(start, end, allDay) {
-	
+		select: function (start, end, jsEvent, view) {
+            var abc = prompt('Enter Title');
+            var allDay = !start.hasTime && !end.hasTime;
+            var newEvent = new Object();
+            newEvent.title = abc;
+            newEvent.start = moment(start).format();
+            newEvent.allDay = false;
+            $('#calendar').fullCalendar('renderEvent', newEvent);
+        },
 
-	$('#modalTitle').html(event.title);
-    $('#modalBody').html(event.description);
-    $('#eventUrl').attr('href',event.url);
- 	$('#calendarModal').modal();
- 	},
+		defaultView: 'agendaWeek',
+			
+		selectable: true,
+		selectHelper: true,
+	  	axisFormat: 'HH:mm a',
+		defaultDate: date,
+		editable: true,
+		eventOverlap: false,
+		selectOverlap: false,
 
-	defaultView: 'agendaWeek',
-		
-	selectable: true,
-	selectHelper: true,
-  	axisFormat: 'HH:mm a',
-	defaultDate: date,
-	editable: true,
-
-	events: [
-			{
-				title: 'All Day Event',
-				start: new Date(y, m, 1)
-			},
-			{
-				title: 'Long Event',
-				start: new Date(y, m, d-5),
-				end: new Date(y, m, d-2)
-			},
+		events: [
 			{
 				id: 999,
 				title: 'Repeating Event',
@@ -76,7 +70,7 @@ $('#calendar').fullCalendar({
 				url: 'http://google.com/'
 			}
 		]
-
-})	
-	
+	})		
 });
+
+
