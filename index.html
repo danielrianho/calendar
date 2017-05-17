@@ -8,12 +8,14 @@
 
     <script language="JavaScript" type="text/javascript"  src='assets/js/jquery.min.js'></script>
     <script language="JavaScript" type="text/javascript"  src='assets/js/moment.js'></script>
+    <script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
     <script language="JavaScript" type="text/javascript" src='assets/js/fullcalendar.min.js'></script>
     <script src='full_calendar.js'></script>
 
     <script language="JavaScript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css"/>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css"/>
     
     <link rel="stylesheet" href="assets/css/fullcalendar.css" rel="import">
     <link rel="stylesheet" href="assets/css/style.css" rel="import">
@@ -49,21 +51,23 @@
                 
                 <form role="form">
                     <div class="form-group">
-                        <label for="exampleInputName">Name</label>
-                        <input type="name" class="form-control"
-                              id="exampleInputName" placeholder="Name"/>
+                        <label for="exampleInputTitle">Title</label>
+                        <input type="name" class="form-control" id="eventTitle" placeholder="Title"/>
                     </div>
 
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control"
-                      id="exampleInputEmail1" placeholder="Enter email"/>
-                  </div>
+                    <div class="form-group">
+                        <label for="exampleInputName">Name</label>
+                        <input type="name" class="form-control" id="exampleInputName" placeholder="Name"/>
+                    </div>
+
+                     <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
+                    </div>
                 
-                  <div class="form-group">
-                    <label for="exampleInputText">Something you want to tell us</label>
-                      <textarea  class="form-control"
-                          id="exampleInputtext"></textarea>
+                    <div class="form-group">
+                        <label for="exampleInputText">Something you want to tell us</label>
+                        <textarea  class="form-control" id="exampleInputtext"></textarea>
                   </div>
                 </form>
             </div>
@@ -74,7 +78,7 @@
                         data-dismiss="modal">
                             Close
                 </button>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button id="submitBtn" type="submit"  data-dismiss="modal" class="btn btn-success">Submit</button>
             </div>
         </div>
     </div>

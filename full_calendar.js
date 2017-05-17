@@ -5,7 +5,6 @@ $(document).ready(function(){
 	var m = date.getMonth();
 	var y = date.getFullYear();
 	
-
 $('#calendar').fullCalendar({
 	header: {
 		left: 'prev,next today',
@@ -13,17 +12,63 @@ $('#calendar').fullCalendar({
 		right: 'month,agendaWeek,agendaDay'
 	},
 
-	select: function(start, end, allDay) {
-	
+	eventClick: function(calEvent, jsEvent, view) {
 
-	$('#modalTitle').html(event.title);
-    $('#modalBody').html(event.description);
-    $('#eventUrl').attr('href',event.url);
- 	$('#calendarModal').modal();
- 	},
+         alert('Event: ' + calEvent.title);
+ //        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+ //        alert('View: ' + view.name);
+
+ //        // change the border color just for fun
+ //        $(this).css('border-color', 'red');
+ 		console.log(event);
+ 		   console.log(title[0]);
+     },
+
+	  
+    select: function(start, end, allDay, event) {
+
+   		//$('#modalTitle').html(event.title);
+ 	//     $('#modalBody').html(event.description);
+		// $('#eventUrl').attr('href',event.url);
+		$('#calendarModal').modal();
+
+        //alert("selected from: " + a.format() + ", to: " + b.format());
+        $("#submitBtn").on('click', function () {
+
+    	var title= $('#eventTitle')[0].value
+
+    	 var mockEvent = {title: title, start, end};
+                $('#calendar').fullCalendar('renderEvent', mockEvent);
+                // $('#submitBtn').unbind('click');
+                // $('#calendarModal').modal('hide');
+        	// var starttime = moment(start).format('MMMM Do YYYY h:mm a'); 
+         //    var endtime = moment(end).format('h:mm a'); 
+        	
+        //console.log(title[0].id);
+           
+
+        	
+
+
+        $.ajax({
+            url: 'index.html',
+            type: "GET",
+            data: {
+                //q: "test"
+            },
+            dataType: "html",
+            success: function(start) {
+			// alert("Data: " + a);
+            },
+            error: function(start, end) {
+                //alert("Request: " + JSON.stringify(a));
+            }
+        })
+       })
+   },
+
 
 	defaultView: 'agendaWeek',
-		
 	selectable: true,
 	selectHelper: true,
   	axisFormat: 'HH:mm a',
@@ -34,11 +79,6 @@ $('#calendar').fullCalendar({
 			{
 				title: 'All Day Event',
 				start: new Date(y, m, 1)
-			},
-			{
-				title: 'Long Event',
-				start: new Date(y, m, d-5),
-				end: new Date(y, m, d-2)
 			},
 			{
 				id: 999,
@@ -77,6 +117,8 @@ $('#calendar').fullCalendar({
 			}
 		]
 
-})	
+})
+
+
 	
 });
