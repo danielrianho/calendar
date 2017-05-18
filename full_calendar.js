@@ -3,128 +3,110 @@ $(document).ready(function(){
 	var date = new Date();
 	var d = date.getDate();
 	var m = date.getMonth();
+	// if (m < 10) {
+	// 	m = '0' + '' + m;
+	// }
+	// if (d < 10) {
+	// 	d = '0' + '' + d;
+	// }
+	console.log(d)
 	var y = date.getFullYear();
 	
+	var calendar = $('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay'
+		},
 
-$('#calendar').fullCalendar({
-	header: {
-		left: 'prev,next today',
-		center: 'title',
-		right: 'month,agendaWeek,agendaDay'
-	},
+		selectable: true,
+		selectHelper: true,
 
-	eventClick: function(calEvent, jsEvent, view) {
+		select: function(start, end, allDay) {
+			$('#calendarModal').modal()
 
-         alert('Event: ' + calEvent.title);
- //        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
- //        alert('View: ' + view.name);
+			$('#submitBtn').on('click', function() {
+				var title = $('#eventTitle').val()
+				if (title) {
+					start = moment(start).format('YYYY-MM-DD hh:mm:ss');
+					end = moment(end).format('YYYY-MM-DD hh:mm:ss');
+					$.ajax({
+						url: 'http://localhost:8888/kokokaka/calendar/add_events.php',
+						data: 'title='+ title+'&start='+ start +'&end='+ end ,
+						type: "POST",
+						success: function(json) {
+						alert('OK');
+						}
+					});
 
- //        // change the border color just for fun
- //        $(this).css('border-color', 'red');
- 		
- 		
-     },
+					calendar.fullCalendar('renderEvent',
+						{
+							title: title,
+							start: start,
+							end: end,
+							allDay: allDay
+						},
+						true // make the event "stick"
+					);
+				}
+			})
+			calendar.fullCalendar('unselect');
+		},
 
-	  
-    select: function(start, end, allDay, event) {
+		eventClick: function(calEvent, jsEvent, view) {
 
-    	
-            // var allDay = !start.hasTime && !end.hasTime;
-            // var newEvent = new Object();
-            // newEvent.title = abc;
-            // newEvent.start = moment(start).format();
-            // newEvent.allDay = false;
-            // $('#calendar').fullCalendar('renderEvent', newEvent);
+	         alert('Event: ' + calEvent.title);
+	        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+	        // alert('View: ' + view.name);
 
-   		//$('#modalTitle').html(event.title);
- 	//     $('#modalBody').html(event.description);
-		// $('#eventUrl').attr('href',event.url);
-		$('#calendarModal').modal();
+	        // // change the border color just for fun
+	        // $(this).css('border-color', 'red');		
+	    },
+		  
+	   
+	   	allDaySlot: false,
+		defaultView: 'agendaWeek',
+		selectable: true,
+		selectHelper: true,
+	  	axisFormat: 'HH:MM',
+		defaultDate: date,
+		editable: true,
+		eventOverlap: false,
+		selectOverlap: false,
+		timezone: 'local',
+		minTime: "07:00:00",
+  		maxTime: "21:00:00",
+  		axisFormat: 'HH:mm',
 
-        //alert("selected from: " + a.format() + ", to: " + b.format());
-        $("#submitBtn").on('click', function () {
+  	
+  		eventDrop: function(start, end, event, delta) {
+			start = moment(start).format('YYYY-MM-DD hh:mm:ss');
+			end = moment(end).format('YYYY-MM-DD hh:mm:ss');
+			$.ajax({
+				url: 'http://localhost:8888/kokokaka/calendar/update_events.php',
+				data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+				type: "POST",
+				success: function(json) {
+					alert("OK");
+				}
+			});
+		},
+		
+		eventResize: function(event, start, end) {
+			start = moment(start).format('YYYY-MM-DD hh:mm:ss');
+			end = moment(end).format('YYYY-MM-DD hh:mm:ss');
+			$.ajax({
+				url: 'http://localhost:8888/kokokaka/calendar/update_events.php',
+				data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
+				type: "POST",
+				success: function(json) {
+				alert("OK");
+				}
+			});
 
-    	var title= $('#eventTitle')[0].value
+		},
 
-    	 var mockEvent = {title: title, start, end};
-                $('#calendar').fullCalendar('renderEvent', mockEvent);
-                // $('#submitBtn').unbind('click');
-                // $('#calendarModal').modal('hide');
-        	// var starttime = moment(start).format('MMMM Do YYYY h:mm a'); 
-         //    var endtime = moment(end).format('h:mm a'); 
-        	
-        //console.log(title[0].id);
-           
-
-        	
-
-
-        $.ajax({
-            url: 'index.html',
-            type: "GET",
-            data: {
-                //q: "test"
-            },
-            dataType: "html",
-            success: function(start) {
-			// alert("Data: " + a);
-            },
-            error: function(start, end) {
-                //alert("Request: " + JSON.stringify(a));
-            }
-        })
-       })
-   },
-
-
-	defaultView: 'agendaWeek',
-	selectable: true,
-	selectHelper: true,
-  	axisFormat: 'HH:mm a',
-	defaultDate: date,
-	editable: true,
-	eventOverlap: false,
-	selectOverlap: false,
-
-
-
-		events: [
-
-			{
-				id: 999,
-				title: 'Repeating Event',
-				start: new Date(y, m, d-3, 16, 0),
-				allDay: false
-			},
-			{
-				id: 999,
-				title: 'Repeating Event',
-				start: new Date(y, m, d+4, 16, 0),
-				allDay: false
-			},
-			{
-				title: 'Meeting',
-				start: new Date(y, m, d, 10, 30),
-				allDay: false
-			},
-			{
-				title: 'Lunch',
-				start: new Date(y, m, d, 12, 0),
-				end: new Date(y, m, d, 14, 0),
-				allDay: false
-			},
-			{
-				title: 'Birthday Party',
-				start: new Date(y, m, d+1, 19, 0),
-				end: new Date(y, m, d+1, 22, 30),
-				allDay: false
-			},
-			{
-				title: 'Click for Google',
-				start: new Date(y, m, 28),
-				end: new Date(y, m, 29),
-				url: 'http://google.com/'
-			}
-		]
-	})		
+		events: 'http://localhost:8888/kokokaka/calendar/events.php',
+	    
+	})	
 });
