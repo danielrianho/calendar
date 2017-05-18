@@ -12,6 +12,7 @@
         <script src='full_calendar.js'></script>
         <script src='full_calendar_sound.js'></script>
         <script language="JavaScript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!--<script language="JavaScript" src="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.js"></script>-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
         
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css"/>
@@ -32,7 +33,8 @@
         <div id="calendar" class="calendar_default"></div>
 
         <div id="calendar" class="calendar_sound"></div>
-	<!-- Button trigger modal -->
+	
+    <!-- Button trigger modal -->
 
         <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -53,24 +55,20 @@
                     <div class="modal-body" id="modalBody">
                         
                         <form role="form">
-                            <div class="form-group">
-                                <label for="exampleInputTitle">Title</label>
-                                <input type="title" class="form-control" id="eventTitle" placeholder="Title"/>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputName">Name</label>
-                                <input type="name" class="form-control" id="exampleInputName" placeholder="Name"/>
-                            </div>
-                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
-                            </div>
                         
                             <div class="form-group">
-                                <label for="exampleInputText">Something you want to tell us</label>
-                                <textarea  class="form-control" id="exampleInputtext"></textarea>
+                                <label for="name">Name</label>
+                                <input type="name" class="form-control" id="userName" placeholder="Name"/>
                             </div>
+                             <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" class="form-control" id="userEmail" placeholder="Enter email"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Phone number</label>
+                                <input type="phone" class="form-control" id="phoneNumber" placeholder="Enter your phone number"/>
+                            </div>
+        
                         </form>
                     </div>
                     
@@ -85,5 +83,24 @@
                 </div>
             </div>
         </div>
+    
+    <!-- Modal information event  -->
+
+   <div id="fullCalModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                <h4 id="modalTitleDelete" class="modal-title"></h4>
+            </div>
+            <div id="modalBody" class="modal-body"></div>
+            <h3 id="newModalEmail"></h3>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary"><a id="eventUrl" target="_blank">Event Page</a></button>
+            </div>
+        </div>
+    </div>
+</div>
     </body>
 </html>

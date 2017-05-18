@@ -26,7 +26,7 @@ $(document).ready(function(){
 			$('#calendarModal').modal()
 
 			$('#submitBtn').on('click', function() {
-				var title = $('#eventTitle').val()
+				var title = $('#userName').val()
 				if (title) {
 					start = moment(start).format('YYYY-MM-DD hh:mm:ss');
 					end = moment(end).format('YYYY-MM-DD hh:mm:ss');
