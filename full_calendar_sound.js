@@ -12,7 +12,7 @@ $(document).ready(function(){
 	console.log(d)
 	var y = date.getFullYear();
 	
-	var calendar = $('.calendar_default').fullCalendar({
+	var calendar = $('.calendar_sound').fullCalendar({
 		header: {
 			left: 'prev,next today',
 			center: 'title',
@@ -31,7 +31,7 @@ $(document).ready(function(){
 					start = moment(start).format('YYYY-MM-DD hh:mm:ss');
 					end = moment(end).format('YYYY-MM-DD hh:mm:ss');
 					$.ajax({
-						url: 'http://localhost:8888/kokokaka/calendar/add_events.php',
+						url: 'http://localhost:8888/kokokaka/calendar/add_events_sound.php',
 						data: 'title='+ title+'&start='+ start +'&end='+ end ,
 						type: "POST",
 						success: function(json) {
@@ -83,7 +83,7 @@ $(document).ready(function(){
 			start = moment(start).format('YYYY-MM-DD hh:mm:ss');
 			end = moment(end).format('YYYY-MM-DD hh:mm:ss');
 			$.ajax({
-				url: 'http://localhost:8888/kokokaka/calendar/update_events.php',
+				url: 'http://localhost:8888/kokokaka/calendar/update_events_sound.php',
 				data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
 				type: "POST",
 				success: function(json) {
@@ -91,12 +91,12 @@ $(document).ready(function(){
 				}
 			});
 		},
-		
+
 		eventResize: function(event, start, end) {
 			start = moment(start).format('YYYY-MM-DD hh:mm:ss');
 			end = moment(end).format('YYYY-MM-DD hh:mm:ss');
 			$.ajax({
-				url: 'http://localhost:8888/kokokaka/calendar/update_events.php',
+				url: 'http://localhost:8888/kokokaka/calendar/update_events_sound.php',
 				data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
 				type: "POST",
 				success: function(json) {
@@ -106,7 +106,7 @@ $(document).ready(function(){
 
 		},
 
-		events: 'http://localhost:8888/kokokaka/calendar/events.php',
+		events: 'http://localhost:8888/kokokaka/calendar/events_sound.php',
 	    
 	})	
 });
