@@ -9,7 +9,6 @@ $(document).ready(function(){
 	// if (d < 10) {
 	// 	d = '0' + '' + d;
 	// }
-
 	var y = date.getFullYear();
 	
 	var calendar_sound = $('#calendar_sound').fullCalendar({
@@ -19,6 +18,7 @@ $(document).ready(function(){
 			right: 'month,agendaWeek,agendaDay'
 		},
 
+		firstDay: 1,
 		selectable: true,
 		selectHelper: true,
 		allDaySlot: false,
@@ -79,7 +79,7 @@ $(document).ready(function(){
 		  
 	   
   	
-  		eventDrop: function(start, end, event, delta) {
+  		eventDrop: function(event, delta, start, end) {
 			start = moment(start).format('YYYY-MM-DD hh:mm:ss');
 			end = moment(end).format('YYYY-MM-DD hh:mm:ss');
 			$.ajax({
