@@ -12,7 +12,7 @@ $(document).ready(function(){
 
 	var y = date.getFullYear();
 	
-	var calendar = $('#calendar_sound').fullCalendar({
+	var calendar_sound = $('#calendar_sound').fullCalendar({
 		header: {
 			left: 'prev,next today',
 			center: 'title',
@@ -21,6 +21,20 @@ $(document).ready(function(){
 
 		selectable: true,
 		selectHelper: true,
+		allDaySlot: false,
+		defaultView: 'agendaWeek',
+		selectable: true,
+		selectHelper: true,
+	  	axisFormat: 'HH:MM',
+		defaultDate: date,
+		editable: true,
+		eventOverlap: false,
+		selectOverlap: false,
+		timezone: 'local',
+		timeFormat: 'H(:mm)',
+		minTime: "07:00:00",
+  		maxTime: "21:00:00",
+  		axisFormat: 'HH:mm',
 
 		select: function(start, end, allDay) {
 			$('#calendarModal').modal()
@@ -34,11 +48,12 @@ $(document).ready(function(){
 						data: 'title='+ title+'&start='+ start +'&end='+ end ,
 						type: "POST",
 						success: function(json) {
-						alert('OK');
+							// alert('OK');
+							$("#calendar_sound").fullCalendar("refetchEvents");							
 						}
 					});
 
-					calendar.fullCalendar('renderEvent',
+					calendar_sound.fullCalendar('renderEvent',
 						{
 							title: title,
 							start: start,
@@ -49,7 +64,7 @@ $(document).ready(function(){
 					);
 				}
 			})
-			calendar.fullCalendar('unselect');
+			calendar_sound.fullCalendar('unselect');
 		},
 
 		eventClick: function(calEvent, jsEvent, view) {
@@ -63,20 +78,6 @@ $(document).ready(function(){
 	    },
 		  
 	   
-	   	allDaySlot: false,
-		defaultView: 'agendaWeek',
-		selectable: true,
-		selectHelper: true,
-	  	axisFormat: 'HH:MM',
-		defaultDate: date,
-		editable: true,
-		eventOverlap: false,
-		selectOverlap: false,
-		timezone: 'local',
-		minTime: "07:00:00",
-  		maxTime: "21:00:00",
-  		axisFormat: 'HH:mm',
-
   	
   		eventDrop: function(start, end, event, delta) {
 			start = moment(start).format('YYYY-MM-DD hh:mm:ss');
@@ -86,7 +87,8 @@ $(document).ready(function(){
 				data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
 				type: "POST",
 				success: function(json) {
-					alert("OK");
+					// $("#calendar_sound").fullCalendar("refetchEvents");
+					// alert("OK");
 				}
 			});
 		},
@@ -99,7 +101,8 @@ $(document).ready(function(){
 				data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
 				type: "POST",
 				success: function(json) {
-				alert("OK");
+					// $("#calendar_sound").fullCalendar("refetchEvents");
+				// alert("OK");
 				}
 			});
 

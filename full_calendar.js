@@ -12,7 +12,7 @@ $(document).ready(function(){
 	console.log(d)
 	var y = date.getFullYear();
 	
-	var calendar = $('#calendar_default').fullCalendar({
+	var calendar_conf = $('#calendar_default').fullCalendar({
 		header: {
 			left: 'prev,next today',
 			center: 'title',
@@ -21,6 +21,20 @@ $(document).ready(function(){
 
 		selectable: true,
 		selectHelper: true,
+		allDaySlot: false,
+		defaultView: 'agendaWeek',
+		selectable: true,
+		selectHelper: true,
+	  	axisFormat: 'HH:MM',
+		defaultDate: date,
+		editable: true,
+		eventOverlap: false,
+		selectOverlap: false,
+		timezone: 'local',
+		timeFormat: 'H(:mm)',
+		minTime: "07:00:00",
+  		maxTime: "21:00:00",
+  		axisFormat: 'HH:mm',
 
 		select: function(start, end, allDay) {
 			$('#calendarModal').modal()
@@ -35,7 +49,8 @@ $(document).ready(function(){
 						data: 'title='+ title+'&start='+ start +'&end='+ end ,
 						type: "POST",
 						success: function(json) {
-						alert('OK');
+							// alert("OK");
+							$("#calendar_default").fullCalendar("refetchEvents");	
 						}
 					});
 
@@ -50,7 +65,7 @@ $(document).ready(function(){
 					);
 				}
 			})
-			calendar.fullCalendar('unselect');
+			calendar_conf.fullCalendar('unselect');
 		},
 
 		eventClick: function(calEvent, jsEvent, view) {
@@ -62,23 +77,7 @@ $(document).ready(function(){
 	        // // change the border color just for fun
 	        // $(this).css('border-color', 'red');		
 	    },
-		  
-	   
-	   	allDaySlot: false,
-		defaultView: 'agendaWeek',
-		selectable: true,
-		selectHelper: true,
-	  	axisFormat: 'HH:MM',
-		defaultDate: date,
-		editable: true,
-		eventOverlap: false,
-		selectOverlap: false,
-		timezone: 'local',
-		minTime: "07:00:00",
-  		maxTime: "21:00:00",
-  		axisFormat: 'HH:mm',
-
-  	
+		    	
   		eventDrop: function(start, end, event, delta) {
 			start = moment(start).format('YYYY-MM-DD hh:mm:ss');
 			end = moment(end).format('YYYY-MM-DD hh:mm:ss');
@@ -87,7 +86,8 @@ $(document).ready(function(){
 				data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
 				type: "POST",
 				success: function(json) {
-					alert("OK");
+					// alert("OK");
+					// $("#calendar_default").fullCalendar("refetchEvents");		
 				}
 			});
 		},
@@ -100,7 +100,8 @@ $(document).ready(function(){
 				data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
 				type: "POST",
 				success: function(json) {
-				alert("OK");
+					// alert("OK");
+					// $("#calendar_default").fullCalendar("refetchEvents");	
 				}
 			});
 
