@@ -40,23 +40,21 @@ $(document).ready(function(){
 		select: function(start, end, allDay) {
 
 			$('#calendarModal').modal()
-	  
 			$('#submitBtn').on('click', function() {
 
-				var title = $('#userName').val()
 				
 				//alert(userNewEmail)
 				if (title) {
 					start = moment(start).format('YYYY-MM-DD hh:mm:ss');
 					end = moment(end).format('YYYY-MM-DD hh:mm:ss');
 					email = $('#userEmail').val();
-					alert(email)
+					// alert(email)
 					$.ajax({
 						url: 'http://localhost:8888/kokokaka/calendar/add_events.php',
 						data: 'title='+ title + '&email='+ email +'&start='+ start +'&end='+ end ,
 						type: "POST",
 						success: function(json) {
-							// alert("OK");
+							alert("OK");
 							$("#calendar_default").fullCalendar("refetchEvents");	
 						}
 					});
@@ -76,59 +74,15 @@ $(document).ready(function(){
 			calendar_conf.fullCalendar('unselect');
 		},
 
-		// eventRender: function( event, element, view ) {
-		//  	var newEmail = element.find( '#userEmail' );
-		// 	newEmail.html( newEmail.text() );
-
-		// 	console.log(newEmail);
-		// },
-
-		// eventRender: function(event, element) {
-  //           element.qtip({
-  //               content: event.description + '<br />' + event.start,
-  //               style: {
-  //                   background: 'black',
-  //                   color: '#FFFFFF'
-  //               },
-  //               position: {
-  //                   corner: {
-  //                       target: 'center',
-  //                       tooltip: 'bottomMiddle'
-  //                   }
-  //               }
-  //           })
-  //   	},
     
-
-
 		eventClick: function(event, calEvent, jsEvent, view) {
-
 			
-
 			$('#modalTitleDelete').html(event.title);
             $('#modalBody').html(event.description);
             $('#newModalEmail').html(event.email);
             $('#eventUrl').attr('href',event.url);
             $('#fullCalModal').modal();
-
-             
-  
-           console.log(event.email)
-
-	        // alert(event.title);
-
-	    	//var newUser = $("input[name='mail']").val()
-		
-
-	       // var newUser = calEvent.title
-	       // console.log(calEvent)
-
-	       
-	        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-	        // alert('View: ' + view.name);
-
-	        // // change the border color just for fun
-	        // $(this).css('border-color', 'red');		
+	        
 	    },
 		  
 	  
