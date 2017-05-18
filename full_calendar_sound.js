@@ -9,10 +9,10 @@ $(document).ready(function(){
 	// if (d < 10) {
 	// 	d = '0' + '' + d;
 	// }
-	console.log(d)
+
 	var y = date.getFullYear();
 	
-	var calendar = $('.calendar_sound').fullCalendar({
+	var calendar = $('#calendar_sound').fullCalendar({
 		header: {
 			left: 'prev,next today',
 			center: 'title',
@@ -24,7 +24,6 @@ $(document).ready(function(){
 
 		select: function(start, end, allDay) {
 			$('#calendarModal').modal()
-
 			$('#submitBtn').on('click', function() {
 				var title = $('#eventTitle').val()
 				if (title) {

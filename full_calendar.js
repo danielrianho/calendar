@@ -12,7 +12,7 @@ $(document).ready(function(){
 	console.log(d)
 	var y = date.getFullYear();
 	
-	var calendar = $('.calendar_default').fullCalendar({
+	var calendar = $('#calendar_default').fullCalendar({
 		header: {
 			left: 'prev,next today',
 			center: 'title',
