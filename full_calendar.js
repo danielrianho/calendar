@@ -10,6 +10,7 @@ $(document).ready(function(){
 	// 	d = '0' + '' + d;
 	// }
 	var y = date.getFullYear();
+	var userNewEmail;
 	
 	var calendar_conf = $('#calendar_default').fullCalendar({
 		header: {
@@ -37,15 +38,22 @@ $(document).ready(function(){
   		axisFormat: 'HH:mm',
 
 		select: function(start, end, allDay) {
+
 			$('#calendarModal').modal()
+	  
 			$('#submitBtn').on('click', function() {
-				var title = $('#eventTitle').val()
+
+				var title = $('#userName').val()
+				
+				//alert(userNewEmail)
 				if (title) {
 					start = moment(start).format('YYYY-MM-DD hh:mm:ss');
 					end = moment(end).format('YYYY-MM-DD hh:mm:ss');
+					email = $('#userEmail').val();
+					alert(email)
 					$.ajax({
 						url: 'http://localhost:8888/kokokaka/calendar/add_events.php',
-						data: 'title='+ title+'&start='+ start +'&end='+ end ,
+						data: 'title='+ title + '&email='+ email +'&start='+ start +'&end='+ end ,
 						type: "POST",
 						success: function(json) {
 							// alert("OK");
@@ -56,6 +64,7 @@ $(document).ready(function(){
 					calendar_conf.fullCalendar('renderEvent',
 						{
 							title: title,
+							email: email,							
 							start: start,
 							end: end,
 							allDay: allDay
@@ -67,9 +76,54 @@ $(document).ready(function(){
 			calendar_conf.fullCalendar('unselect');
 		},
 
-		eventClick: function(calEvent, jsEvent, view) {
+		// eventRender: function( event, element, view ) {
+		//  	var newEmail = element.find( '#userEmail' );
+		// 	newEmail.html( newEmail.text() );
 
-	         alert('Event: ' + calEvent.title);
+		// 	console.log(newEmail);
+		// },
+
+		// eventRender: function(event, element) {
+  //           element.qtip({
+  //               content: event.description + '<br />' + event.start,
+  //               style: {
+  //                   background: 'black',
+  //                   color: '#FFFFFF'
+  //               },
+  //               position: {
+  //                   corner: {
+  //                       target: 'center',
+  //                       tooltip: 'bottomMiddle'
+  //                   }
+  //               }
+  //           })
+  //   	},
+    
+
+
+		eventClick: function(event, calEvent, jsEvent, view) {
+
+			
+
+			$('#modalTitleDelete').html(event.title);
+            $('#modalBody').html(event.description);
+            $('#newModalEmail').html(event.email);
+            $('#eventUrl').attr('href',event.url);
+            $('#fullCalModal').modal();
+
+             
+  
+           console.log(event.email)
+
+	        // alert(event.title);
+
+	    	//var newUser = $("input[name='mail']").val()
+		
+
+	       // var newUser = calEvent.title
+	       // console.log(calEvent)
+
+	       
 	        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
 	        // alert('View: ' + view.name);
 
@@ -109,5 +163,6 @@ $(document).ready(function(){
 
 		events: 'http://localhost:8888/kokokaka/calendar/events.php',
 	    
-	})	
+	})   
+
 });
