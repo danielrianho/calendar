@@ -1,13 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=News+Cycle');
 
-		body
-		{
-			margin-top: 40px;
-			text-align: center;
-			font-size: 14px;
-			font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		}
-		#calendar
-		{
-			width: 900px;
-			margin: 0 auto;
-		}
+
+
+body {
+	font-size: 14px;
+	font-family: 'News Cycle', sans-serif;
+}
+
+.tab-pane.fade h3 {
+/*	font-size: 40px;*/
+	margin-bottom: 40px;
+	text-align: center;
+}
+
+.calendar {
+	max-width: 600px;
+	height: auto;
+	margin: 0 auto;
+	overflow: auto;
+}
+
+
