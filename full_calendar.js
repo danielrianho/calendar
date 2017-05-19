@@ -66,7 +66,7 @@ $(document).ready(function(){
 						}
 					});
 
-					calendar.fullCalendar('renderEvent',
+					calendar_conf.fullCalendar('renderEvent',
 						{
 							title: title,
 							email: email,							
