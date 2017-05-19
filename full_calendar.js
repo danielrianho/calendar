@@ -40,9 +40,8 @@ $(document).ready(function(){
 		select: function(start, end, allDay) {
 
 			$('#calendarModal').modal()
-			$('#submitBtn').on('click', function() {
-
-				
+			$('#submitBtn').on('click', function() {	
+				var title = $('#userName').val()			
 				//alert(userNewEmail)
 				if (title) {
 					start = moment(start).format('YYYY-MM-DD hh:mm:ss');
