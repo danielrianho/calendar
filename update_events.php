@@ -7,7 +7,6 @@ $email=$_POST['email'];
 $start=$_POST['start'];
 $end=$_POST['end'];
  
-// connexion à la base de données
  try {
  $bdd = new PDO('mysql:host=localhost;dbname=calendar', 'root', 'root');
  } catch(Exception $e) {

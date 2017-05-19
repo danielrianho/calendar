@@ -9,7 +9,6 @@ $(document).ready(function(){
 	// if (d < 10) {
 	// 	d = '0' + '' + d;
 	// }
-	console.log(d)
 	var y = date.getFullYear();
 	var userNewEmail;
 	
@@ -20,6 +19,7 @@ $(document).ready(function(){
 			right: 'month,agendaWeek,agendaDay'
 		},
 
+		firstDay: 1,
 		selectable: true,
 		selectHelper: true,
 		allDaySlot: false,
@@ -39,29 +39,22 @@ $(document).ready(function(){
 
 		select: function(start, end, allDay) {
 
-			
-
 			$('#calendarModal').modal()
-
-			// var newEmail = $('form.userEmail').find('[type ="email"]').val();
-	       		
-
 			$('#submitBtn').on('click', function() {
 
-				var title = $('#userName').val()
 				
 				//alert(userNewEmail)
 				if (title) {
 					start = moment(start).format('YYYY-MM-DD hh:mm:ss');
 					end = moment(end).format('YYYY-MM-DD hh:mm:ss');
 					email = $('#userEmail').val();
-					alert(email)
+					// alert(email)
 					$.ajax({
 						url: 'http://localhost:8888/kokokaka/calendar/add_events.php',
 						data: 'title='+ title + '&email='+ email +'&start='+ start +'&end='+ end ,
 						type: "POST",
 						success: function(json) {
-							// alert("OK");
+							alert("OK");
 							$("#calendar_default").fullCalendar("refetchEvents");	
 						}
 					});
@@ -81,62 +74,19 @@ $(document).ready(function(){
 			calendar_conf.fullCalendar('unselect');
 		},
 
-		// eventRender: function( event, element, view ) {
-		//  	var newEmail = element.find( '#userEmail' );
-		// 	newEmail.html( newEmail.text() );
-
-		// 	console.log(newEmail);
-		// },
-
-		// eventRender: function(event, element) {
-  //           element.qtip({
-  //               content: event.description + '<br />' + event.start,
-  //               style: {
-  //                   background: 'black',
-  //                   color: '#FFFFFF'
-  //               },
-  //               position: {
-  //                   corner: {
-  //                       target: 'center',
-  //                       tooltip: 'bottomMiddle'
-  //                   }
-  //               }
-  //           })
-  //   	},
     
-
-
 		eventClick: function(event, calEvent, jsEvent, view) {
-
 			
-
 			$('#modalTitleDelete').html(event.title);
             $('#modalBody').html(event.description);
             $('#newModalEmail').html(event.email);
             $('#eventUrl').attr('href',event.url);
             $('#fullCalModal').modal();
-
-             
-  
-           console.log(event.email)
-
-	        // alert(event.title);
-
-	    	//var newUser = $("input[name='mail']").val()
-		
-
-	       // var newUser = calEvent.title
-	       // console.log(calEvent)
-
-	       
-	        // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-	        // alert('View: ' + view.name);
-
-	        // // change the border color just for fun
-	        // $(this).css('border-color', 'red');		
+	        
 	    },
-		    	
-  		eventDrop: function(start, end, event, delta) {
+		  
+	  
+  		eventDrop: function(event, delta, start, end) {
 			start = moment(start).format('YYYY-MM-DD hh:mm:ss');
 			end = moment(end).format('YYYY-MM-DD hh:mm:ss');
 			$.ajax({
@@ -144,8 +94,8 @@ $(document).ready(function(){
 				data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
 				type: "POST",
 				success: function(json) {
-					// alert("OK");
-					// $("#calendar_default").fullCalendar("refetchEvents");		
+					alert("OK");
+					// $("#calendar").fullCalendar("refetchEvents");	
 				}
 			});
 		},
@@ -158,7 +108,7 @@ $(document).ready(function(){
 				data: 'title='+ event.title+'&start='+ start +'&end='+ end +'&id='+ event.id ,
 				type: "POST",
 				success: function(json) {
-					// alert("OK");
+					alert("OK");
 					// $("#calendar_default").fullCalendar("refetchEvents");	
 				}
 			});
